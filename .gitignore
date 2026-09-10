@@ -4,5 +4,8 @@ node_modules/
 !.env.example
 *.tsbuildinfo
 release/
+data/
 
 .DS_Store
+
+deploy.sh
