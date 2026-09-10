@@ -2,13 +2,20 @@
 import {useState} from 'react';
 import {Bookmark,Download,Plus,Trash2} from 'lucide-react';
 import {useApp} from '@/lib/store';
+import PageBanner from '@/components/PageBanner';
 
 export default function MyNumbersPage(){
  const {notes,save,removeNote,remind,setToast} = useApp();
  const [manual,setManual] = useState('');
 
  return <>
-  <div className="page-heading"><div><div className="eyebrow">A LITTLE BELIEF. A LITTLE POSSIBILITY.</div><h1>โพยของฉัน <span>✦</span></h1><p>สำรวจเรื่องราวของตัวเลข ด้วยความเชื่อและวิจารณญาณ</p></div></div>
+  <PageBanner
+   eyebrow="A LITTLE BELIEF. A LITTLE POSSIBILITY."
+   title={<>โพยของฉัน <span>✦</span></>}
+   subtitle="สำรวจเรื่องราวของตัวเลข ด้วยความเชื่อและวิจารณญาณ"
+   imgSrc="/img-banner-notebook.webp"
+   theme="pink"
+  />
   <section className="panel">
    <div className="section-title"><div><h2>เลขโปรดของคุณ <span className="tiny-badge">{notes.length} เลข</span></h2><p>บันทึกเฉพาะอุปกรณ์นี้ • ระบบช่วยป้องกันเลขซ้ำ</p></div><button className="outline" onClick={remind}><Download size={16}/> เพิ่มเตือนในปฏิทิน</button></div>
    <form className="add-form" onSubmit={e=>{e.preventDefault();if(/^\d{2,3}$/.test(manual)){save(manual,'เพิ่มเอง');setManual('')}else setToast('กรอกเลข 2 หรือ 3 หลัก')}}>

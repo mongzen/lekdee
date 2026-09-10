@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import {getTrends} from '@/lib/trends';
 import TrendsFeed from '@/components/TrendsFeed';
+import PageBanner from '@/components/PageBanner';
 
 export const metadata: Metadata = {
  title: 'กระแสเลขดัง',
@@ -10,7 +11,13 @@ export const metadata: Metadata = {
 export default async function TrendsPage(){
  const trends = await getTrends();
  return <>
-  <div className="page-heading"><div><div className="eyebrow">A LITTLE BELIEF. A LITTLE POSSIBILITY.</div><h1>กระแสเลขดัง <span>✦</span></h1><p>สำรวจเรื่องราวของตัวเลข ด้วยความเชื่อและวิจารณญาณ</p></div></div>
+  <PageBanner
+   eyebrow="A LITTLE BELIEF. A LITTLE POSSIBILITY."
+   title={<>กระแสเลขดัง <span>✦</span></>}
+   subtitle="สำรวจเรื่องราวของตัวเลข ด้วยความเชื่อและวิจารณญาณ"
+   imgSrc="/img-banner-trends.webp"
+   theme="purple"
+  />
   <TrendsFeed initial={trends}/>
  </>;
 }

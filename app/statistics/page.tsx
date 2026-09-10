@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import {ArrowUpRight,ChartNoAxesCombined} from 'lucide-react';
 import {getStatistics} from '@/lib/statistics';
 import SaveButton from '@/components/SaveButton';
+import PageBanner from '@/components/PageBanner';
 
 export const metadata: Metadata = {
  title: 'สถิติย้อนหลัง',
@@ -11,7 +12,13 @@ export const metadata: Metadata = {
 export default async function StatisticsPage(){
  const stats = await getStatistics();
  return <>
-  <div className="page-heading"><div><div className="eyebrow">A LITTLE BELIEF. A LITTLE POSSIBILITY.</div><h1>สถิติย้อนหลัง <span>✦</span></h1><p>สำรวจเรื่องราวของตัวเลข ด้วยความเชื่อและวิจารณญาณ</p></div></div>
+  <PageBanner
+   eyebrow="A LITTLE BELIEF. A LITTLE POSSIBILITY."
+   title={<>สถิติย้อนหลัง <span>✦</span></>}
+   subtitle="สำรวจเรื่องราวของตัวเลข ด้วยความเชื่อและวิจารณญาณ"
+   imgSrc="/img-banner-stats.webp"
+   theme="blue"
+  />
   {stats.mode==='live'
    ? <section className="panel">
       <div className="section-title"><h2>ความถี่เลขท้าย 2 ตัว จาก {stats.draws} งวด</h2><a className="outline" href={stats.sourceUrl} target="_blank" rel="noreferrer">แหล่งข้อมูล <ArrowUpRight size={16}/></a></div>
