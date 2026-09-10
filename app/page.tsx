@@ -1,6 +1,6 @@
 import type {Metadata} from 'next';
 import Link from 'next/link';
-import {ArrowRight,ArrowUpRight,Bookmark,CalendarDays,ChevronRight,Flame,RotateCw,Sparkles,Stars} from 'lucide-react';
+import {ArrowRight,ArrowUpRight,CalendarDays,ChevronRight,Flame,RotateCw,Sparkles,Stars} from 'lucide-react';
 import {getTrends} from '@/lib/trends';
 import RemindButton from '@/components/RemindButton';
 import TrendPreviewChips from '@/components/TrendPreviewChips';
@@ -26,7 +26,23 @@ export default async function Home(){
     <Link className="primary" href="/ritual"><Sparkles size={18}/> ขอเลขนำโชค <ArrowUpRight size={18}/></Link>
     <small>เพื่อความบันเทิงและความเชื่อส่วนบุคคล</small>
    </div>
-   <div className="orb-scene" aria-hidden="true"><div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="orb"><span>๙</span></div><div className="orb-platform"/><span className="star star-one">✦</span><span className="star star-two">✧</span><span className="float-number n1">๒</span><span className="float-number n2">๗</span><span className="orb-caption">YOUR LUCK IS WITHIN YOU</span></div>
+   <div className="hero-visual" aria-hidden="true">
+    <div className="hv-glow hv-glow-purple"/>
+    <div className="hv-glow hv-glow-teal"/>
+    <div className="hv-glow hv-glow-green"/>
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img src="/hero-char.jpg" alt="" className="hv-char"/>
+    <div className="hv-badge hv-badge-gold"><span className="hv-num">89</span><span className="hv-crown">♛</span></div>
+    <div className="hv-badge hv-badge-green"><span className="hv-num">56</span><span className="hv-star">★</span></div>
+    <div className="hv-badge hv-badge-purple"><span className="hv-num">27</span><span className="hv-star">✦</span></div>
+    <div className="hv-orbit hv-orbit-1"/>
+    <div className="hv-orbit hv-orbit-2"/>
+    <span className="hv-spark s1">✦</span>
+    <span className="hv-spark s2">✧</span>
+    <span className="hv-spark s3">★</span>
+    <span className="hv-spark s4">✦</span>
+    <span className="hv-caption">YOUR LUCK IS WITHIN YOU</span>
+   </div>
    <span className="hero-index">01 / THE BELIEF</span>
   </section>
   <section className="quick-grid">
