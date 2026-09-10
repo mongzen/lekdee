@@ -42,8 +42,12 @@ function findFirst(obj, keys, seen = new Set()) {
   return undefined;
 }
 
+// Real GLO shape (confirmed against the live API): data.last2 is
+// { price, number: [{ round, value }] } — not a plain string/array.
 function normalizeLastTwo(value) {
-  const raw = Array.isArray(value) ? value[0] : value;
+  let raw = value;
+  if (raw && typeof raw === 'object' && Array.isArray(raw.number)) raw = raw.number[0]?.value;
+  if (Array.isArray(raw)) raw = raw[0];
   const digits = String(raw ?? '').replace(/\D/g, '');
   return /^\d{2}$/.test(digits) ? digits : null;
 }
@@ -55,8 +59,12 @@ async function main() {
   if (!response.ok) throw new Error(`GLO API responded ${response.status}`);
   const data = await response.json();
 
-  const dateRaw = findFirst(data, ['#displayDate', 'displayDate', 'date']);
-  const last2Raw = findFirst(data, ['#last2', 'last2']);
+  // "date" first: confirmed as a plain ISO string on the live API. Other
+  // candidates come after as fallbacks — GLO also has a "displayDate" key
+  // that holds a {date,month,year} object, not a string, so it must not
+  // take priority over the clean "date" field.
+  const dateRaw = findFirst(data, ['date', '#displayDate', 'displayDate']);
+  const last2Raw = findFirst(data, ['last2', '#last2']);
   if (dateRaw === undefined || last2Raw === undefined) {
     console.error('Could not locate date/last2 fields. Raw response:', JSON.stringify(data));
     throw new Error('Unrecognized GLO response shape — inspect the raw response above and adjust the key candidates in scripts/fetch-lottery.mjs');
