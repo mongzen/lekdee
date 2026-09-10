@@ -8,7 +8,7 @@ set -euo pipefail   # หยุดทันทีถ้ามี error หรื
 
 # ── CONFIG (แก้ให้ตรงกับ server ของคุณ) ──────────────────────────────────────
 APP_NAME="lekdee"
-APP_DIR="/var/www/lekdee"          # path ของโปรเจกต์บน server
+APP_DIR="/home/kan-lekdee/htdocs/lekdee.kan.bio"          # path ของโปรเจกต์บน server
 BRANCH="main"                      # branch ที่ใช้ deploy
 NODE_VERSION="20"                  # Node.js major version
 PM2_CONFIG="ecosystem.config.cjs"
