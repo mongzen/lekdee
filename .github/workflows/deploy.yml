@@ -1,0 +1,33 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main  # trigger เมื่อ push ขึ้น branch main
+
+jobs:
+  deploy:
+    name: SSH Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout โค้ด (เพื่อให้ GitHub Actions เห็น repo)
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. SSH เข้า server แล้วรัน deploy.sh
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host:     ${{ secrets.SERVER_HOST }}      # IP หรือ domain ของ server
+          username: ${{ secrets.SERVER_USER }}      # เช่น ubuntu หรือ deploy
+          key:      ${{ secrets.SERVER_SSH_KEY }}   # private key (ต้องใส่ใน GitHub Secrets)
+          port:     ${{ secrets.SERVER_PORT || 22 }}
+          script: |
+            cd /var/www/lekdee
+            bash deploy.sh
+
+      # 3. แจ้งผล (optional)
+      - name: Notify success
+        if: success()
+        run: echo "✅ Deployed lekdee successfully!"
