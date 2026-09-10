@@ -16,7 +16,7 @@ if [ ! -f .env.local ]; then
   printf 'APP_ORIGIN=https://lekdee.kan.bio\n' > .env.local
 fi
 npm ci --no-audit --no-fund
-npm run build
+NODE_OPTIONS="--max-old-space-size=512" NEXT_TELEMETRY_DISABLED=1 npm run build
 if ! command -v pm2 >/dev/null 2>&1; then
   npm install --prefix "$HOME/.local/share/lekdee-runtime" pm2@6 --no-audit --no-fund
   export PATH="$HOME/.local/share/lekdee-runtime/node_modules/.bin:$PATH"
