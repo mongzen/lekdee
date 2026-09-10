@@ -1,6 +1,6 @@
 import type {Metadata} from 'next';
 import Link from 'next/link';
-import {ArrowRight,ArrowUpRight,CalendarDays,ChevronRight,Flame,RotateCw,Sparkles,Stars} from 'lucide-react';
+import {ArrowRight,ArrowUpRight,CalendarDays,ChevronRight,Flame,Sparkles} from 'lucide-react';
 import {getTrends} from '@/lib/trends';
 import RemindButton from '@/components/RemindButton';
 import TrendPreviewChips from '@/components/TrendPreviewChips';
@@ -31,10 +31,9 @@ export default async function Home(){
     <div className="hv-glow hv-glow-teal"/>
     <div className="hv-glow hv-glow-green"/>
     {/* eslint-disable-next-line @next/next/no-img-element */}
-    <img src="/hero-char.jpg" alt="" className="hv-char"/>
-    <div className="hv-badge hv-badge-gold"><span className="hv-num">89</span><span className="hv-crown">♛</span></div>
-    <div className="hv-badge hv-badge-green"><span className="hv-num">56</span><span className="hv-star">★</span></div>
-    <div className="hv-badge hv-badge-purple"><span className="hv-num">27</span><span className="hv-star">✦</span></div>
+    <img src="/img-numbers.webp" alt="" className="hv-numbers-img"/>
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img src="/hero-char.webp" alt="" className="hv-char"/>
     <div className="hv-orbit hv-orbit-1"/>
     <div className="hv-orbit hv-orbit-2"/>
     <span className="hv-spark s1">✦</span>
@@ -46,9 +45,24 @@ export default async function Home(){
    <span className="hero-index">01 / THE BELIEF</span>
   </section>
   <section className="quick-grid">
-   <Link className="quick-card" href="/ritual"><span className="quick-icon mint"><Stars/></span><div><strong>ขอเลขสิ่งศักดิ์สิทธิ์</strong><p>ตั้งจิต แล้วให้โชคชะตานำทาง</p></div><ArrowUpRight size={18}/></Link>
-   <Link className="quick-card" href="/chat"><span className="quick-icon purple"><Sparkles/></span><div><strong>คุยกับเจ้าแม่ AI <em>DEMO</em></strong><p>เล่าเรื่องของคุณ ให้เจ้าแม่ช่วยใบ้</p></div><ArrowUpRight size={18}/></Link>
-   <Link className="quick-card" href="/ritual#wheel"><span className="quick-icon blue"><RotateCw/></span><div><strong>กงล้อเสี่ยงเลข</strong><p>หมุนรับเลขดี เติมสีสันให้วันนี้</p></div><ArrowUpRight size={18}/></Link>
+   <Link className="quick-card" href="/ritual">
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img src="/img-shrine.webp" alt="" className="quick-img"/>
+    <div><strong>ขอเลขสิ่งศักดิ์สิทธิ์</strong><p>ตั้งจิต แล้วให้โชคชะตานำทาง</p></div>
+    <ArrowUpRight size={18}/>
+   </Link>
+   <Link className="quick-card" href="/chat">
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img src="/hero-char.webp" alt="" className="quick-img"/>
+    <div><strong>คุยกับเจ้าแม่ AI <em>DEMO</em></strong><p>เล่าเรื่องของคุณ ให้เจ้าแม่ช่วยใบ้</p></div>
+    <ArrowUpRight size={18}/>
+   </Link>
+   <Link className="quick-card" href="/ritual#wheel">
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img src="/img-wheel.webp" alt="" className="quick-img"/>
+    <div><strong>กงล้อเสี่ยงเลข</strong><p>หมุนรับเลขดี เติมสีสันให้วันนี้</p></div>
+    <ArrowUpRight size={18}/>
+   </Link>
   </section>
   <section className="feed-layout home-preview">
    <div className="feed-main">
