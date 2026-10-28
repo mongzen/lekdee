@@ -1,7 +1,5 @@
 import type {Metadata} from 'next';
-import TempleRitual from '@/components/TempleRitual';
 import WheelRitual from '@/components/WheelRitual';
-import PageBanner from '@/components/PageBanner';
 
 export const metadata: Metadata = {
  title: 'ขอเลขสิ่งศักดิ์สิทธิ์',
@@ -9,17 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function RitualPage(){
- return <>
-  <PageBanner
-   eyebrow="A LITTLE BELIEF. A LITTLE POSSIBILITY."
-   title={<>ขอเลขสิ่งศักดิ์สิทธิ์ <span>✦</span></>}
-   subtitle="สำรวจเรื่องราวของตัวเลข ด้วยความเชื่อและวิจารณญาณ"
-   imgSrc="/img-banner-shrine.webp"
-   theme="gold"
-  />
-  <div className="ritual-grid">
-   <TempleRitual/>
-   <WheelRitual/>
-  </div>
- </>;
+ return <WheelRitual/>;
 }

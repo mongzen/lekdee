@@ -2,12 +2,13 @@
 import {useEffect} from 'react';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
-import {ArrowUpRight,Bell,ChevronRight,Check,Flame,House,Menu,MessageCircle,ShieldCheck,Sparkles,Stars,Users,ChartNoAxesCombined,Bookmark} from 'lucide-react';
+import {ArrowUpRight,Bell,ChevronRight,Check,Disc3,Flame,House,Menu,MessageCircle,ShieldCheck,Sparkles,Stars,Users,ChartNoAxesCombined,Bookmark} from 'lucide-react';
 import {useApp} from '@/lib/store';
 
 const nav = [
  {name:'ภาพรวม',href:'/',icon:House},
- {name:'ขอเลขสิ่งศักดิ์สิทธิ์',href:'/ritual',icon:Stars},
+ {name:'เสี่ยงเซียมซี',href:'/ritual/siam-si',icon:Stars},
+ {name:'หมุนกงล้อ',href:'/ritual/wheel',icon:Disc3},
  {name:'กระแสเลขดัง',href:'/trends',icon:Flame},
  {name:'เจ้าแม่ใบ้หวย',href:'/chat',icon:MessageCircle},
  {name:'โพยของฉัน',href:'/my-numbers',icon:Bookmark},
@@ -18,7 +19,7 @@ const nav = [
 export default function Shell({children}:{children:React.ReactNode}){
  const pathname = usePathname();
  const {notes,toast,menu,setMenu,remind} = useApp();
- const current = nav.find(n=>n.href===pathname)?.name || 'ภาพรวม';
+ const current = pathname==='/ritual'?'หมุนกงล้อ':nav.find(n=>n.href===pathname)?.name || 'ภาพรวม';
 
  useEffect(()=>{ setMenu(false); },[pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -27,7 +28,7 @@ export default function Shell({children}:{children:React.ReactNode}){
    <Link className="brand" href="/" aria-label="เลขดี หน้าหลัก"><span className="brand-icon">✳</span><strong>เลขดี<span>lekdee</span></strong><span className="brand-dot">®</span></Link>
    <div className="workspace-label">YOUR LUCKY SPACE</div>
    <nav>{nav.map(({name,href,icon:Icon})=>
-    <Link href={href} className={pathname===href?'active':''} key={name}>
+    <Link href={href} className={pathname===href||(pathname==='/ritual'&&href==='/ritual/wheel')?'active':''} key={name}>
      <Icon size={19}/>{name}
      {name==='โพยของฉัน'&&notes.length>0&&<small>{notes.length}</small>}
      {name==='เจ้าแม่ใบ้หวย'&&<em>AI</em>}

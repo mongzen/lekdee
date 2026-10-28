@@ -30,8 +30,7 @@ export default async function Home(){
     <div className="hv-glow hv-glow-purple"/>
     <div className="hv-glow hv-glow-teal"/>
     <div className="hv-glow hv-glow-green"/>
-    {/* eslint-disable-next-line @next/next/no-img-element */}
-    <img src="/img-numbers.webp" alt="" className="hv-numbers-img"/>
+
     {/* eslint-disable-next-line @next/next/no-img-element */}
     <img src="/hero-char.webp" alt="" className="hv-char"/>
     <div className="hv-orbit hv-orbit-1"/>
